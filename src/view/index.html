@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>daruk-test</title>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  </head>
+
+  <body style="padding-top: 200px;text-align: center">
+
+  <form>
+    <input type="file" name="upload" multiple="multiple" id="input"><br>
+    <input type="submit" value="Upload" id="submit">
+    </form>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.19.0/dist/axios.js"></script>
+  <script>
+    const $ = document.querySelector.bind(document)
+    const $input = $('#input')
+    const $submit = $('#submit')
+
+    $submit.addEventListener('click', function (e) {
+      e.preventDefault()
+
+      const files = $input.files
+
+      for (let file of files) {
+        const formData = new FormData()
+        formData.append('img', file, file.name)
+
+        axios.post('/upload', formData).then(res => {
+          console.log(res.data)
+        })
+      }
+    })
+  </script>
+</html>
