@@ -10,7 +10,13 @@
 
   <form>
     <input type="file" name="upload" multiple="multiple" id="input"><br>
-    <input type="submit" value="Upload" id="submit">
+    <div>
+      <input type="submit" value="Upload" id="submit">
+    </div>
+
+    <div>
+      <input type="button" value="create" id="create">
+    </div>
     </form>
   </body>
 
@@ -19,6 +25,7 @@
     const $ = document.querySelector.bind(document)
     const $input = $('#input')
     const $submit = $('#submit')
+    const $create = $('#create')
 
     $submit.addEventListener('click', function (e) {
       e.preventDefault()
@@ -33,6 +40,14 @@
           console.log(res.data)
         })
       }
+    })
+
+    $create.addEventListener('click', function (e) {
+      const data = {"_id":"5d00f83e89fca3aaa7f5a58c","category":"game","chains":["EOS"],"website":"https://github.com","name":"https://github.com","brief":"https://github.com","details":"https://github.com","languages":[],"contacts":{},"default_language":"en-us","imgs_9_16":["http://127.0.0.1:14000/static/uploads/imgs/upload_5d6cd6c480118d77314ba7b9f4f01d82.png","http://127.0.0.1:14000/static/uploads/imgs/upload_08f0e4cd0a110eab6ede52e12cb0f2c5.png"],"created_by":45,"zh-cn":{},"en":{},"imgs_1_1":[],"imgs_12_9":[],"imgs_16_10":[],"created_at":"2019-06-12T13:03:58.328Z","updated_at":"2019-06-12T13:03:58.328Z","dapp_id":51,"status":0,"auto_online":true,"logo":"http://127.0.0.1:14000/static/uploads/imgs/upload_0c2578f35a79323ffedc207e663d0098.png"}
+
+      axios.post('/create', data).then(res => {
+        console.log(res.data)
+      })
     })
   </script>
 </html>

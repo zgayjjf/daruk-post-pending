@@ -13,11 +13,23 @@ export default function(daruk: Daruk) {
     'koa-handle-error',
     'koa-favicon',
     'koa-static',
-    'koa-bodyparser',
+
+    // post 请求 无限 pending
+    'koa-body',
+
+    // 1. post 请求无限 pending，2. 并发文件上传重复
+    // 'koa-bodyparser',
+    // 'formidable-upload-koa',
+
     'koa-test-mid',
     'koa-ejs'
   ];
   darukConfig.middleware = {
+    'koa-body': (mid: Function) => {
+      return mid({
+        multipart: true
+      });
+    },
     // https://github.com/axross/koa-handle-error 必须第一个位置
     'koa-handle-error': (mid: Function) => {
       return mid((err: any) => {

@@ -12,11 +12,18 @@ export default class Index extends BaseController {
   }
 
   @post('/upload')
-  @middleware('formidable-upload-koa')
   public async upload() {
-    const file = this.ctx.req.files.img;
+    const ctx = this.ctx
+    // koa-body 挂在 request 上,formidable-upload-koa 挂在 req 上
+    const file = (ctx.req.files ? ctx.req.files : ctx.request.files).img
 
     console.log(file.name);
     this.ctx.body = file.name;
+  }
+
+  @post('/create')
+  public async create() {
+    console.log(this.ctx.request.body)
+    this.ctx.body = 'success'
   }
 }
