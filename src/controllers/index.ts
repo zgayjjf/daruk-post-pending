@@ -12,6 +12,7 @@ export default class Index extends BaseController {
   }
 
   @post('/upload')
+  @middleware('formidable-upload-koa')
   public async upload() {
     const ctx = this.ctx
     // koa-body 挂在 request 上,formidable-upload-koa 挂在 req 上

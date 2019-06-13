@@ -15,10 +15,10 @@ export default function(daruk: Daruk) {
     'koa-static',
 
     // post 请求 无限 pending
-    'koa-body',
+    // 'koa-body',
 
     // 1. post 请求无限 pending，2. 并发文件上传重复
-    // 'koa-bodyparser',
+    'koa-bodyparser',
     // 'formidable-upload-koa',
 
     'koa-test-mid',
