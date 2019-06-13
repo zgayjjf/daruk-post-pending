@@ -33,7 +33,7 @@ export default function(daruk: Daruk) {
     },
     // https://github.com/PaulRosset/formidable-upload-koa
     'formidable-upload-koa': (mid: Function) => {
-      return mid({ uploadDir: `${rootPath}`, keepExtensions: true });
+      return mid({ uploadDir: path.resolve(rootPath, '../uploads'), keepExtensions: true });
     },
     // https://github.com/venables/koa-json-body
     'koa-json-body': (mid: Function) => {
